@@ -19,10 +19,13 @@ export default function Index() {
   }
   return (
     
-   
+   <>
   	<GestureHandlerRootView style={{ flex: 1 }}>
     <Game />
   </GestureHandlerRootView>
-  
+     <Text style={{color : "#fff", alignSelf : "center" }}>
+       Secured By AtheX Risk
+     </Text>
+   </>
   );
 }

@@ -50,6 +50,13 @@
       "eas": {
         "projectId": "dc159afe-17d2-4968-8b1e-0081f2e32f12"
       }
+    },
+    "owner": "athex_web3",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/dc159afe-17d2-4968-8b1e-0081f2e32f12"
     }
   }
 }

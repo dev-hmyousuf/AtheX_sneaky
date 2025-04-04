@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
@@ -107,20 +106,20 @@ setIsPaused(!isPaused);
 const updateGamePoints = async (newPoints: number) => {
 if (!user) return;
 
-try {  
-  const currentPoints = user.unsafeMetadata?.gamePoints || 0;  
-  const updatedPoints = currentPoints + newPoints;  
+try {
+const currentPoints = user.unsafeMetadata?.gamePoints || 0;
+const updatedPoints = currentPoints + newPoints;
 
-  await user.update({  
-    unsafeMetadata: { gamePoints: updatedPoints },  
-  });  
+await user.update({
+unsafeMetadata: { gamePoints: updatedPoints },
+});
 
-  // Force Clerk to refresh user data  
-  await user.reload();  
+// Force Clerk to refresh user data
+await user.reload();
 
-  console.log("Game points updated:", updatedPoints);  
-} catch (error) {  
-  console.error("Failed to update game points:", error);  
+console.log("Game points updated:", updatedPoints);
+} catch (error) {
+console.error("Failed to update game points:", error);
 }
 
 };
@@ -129,35 +128,34 @@ return (
 <PanGestureHandler onGestureEvent={handleGesture}>
 <SafeAreaView style={styles.container}>
 
-<Header reloadGame={reloadGame} pauseGame={pauseGame} isPaused={isPaused}>  
-<Score score={score} />  
-</Header>  
-<View style={styles.boundaries}>  
-<Snake snake={snake} />  
-<Food x={food.x} y={food.y} />  
-</View>  
-<View> <Text style={{ alignSelf : "center", color : "#fff"}}>Secured By AtheX Risk</Text> </View>
-</SafeAreaView>  
-</PanGestureHandler>  
-);  
-}
+<Header reloadGame={reloadGame} pauseGame={pauseGame} isPaused={isPaused}>    
+<Score score={score} />    
+</Header>    
+<View style={styles.boundaries}>    
+<Snake snake={snake} />    
+<Food x={food.x} y={food.y} />    
+</View>    
+</SafeAreaView>    
+</PanGestureHandler>    
+);    
+}  const styles = StyleSheet.create({
+container: {
 
-const styles = StyleSheet.create({
-  container: {
-  
-    width : "95%",
-    alignSelf : "center",
-    backgroundColor: Colors.primary,
-    height : "100%",
-  	justifyContent : "center",
-  },
-  boundaries: {
-    height : 650,
-    
-    borderColor: Colors.primary,
-    borderWidth: 12,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    backgroundColor: Colors.background,
-  },
+width : "95%",  
+alignSelf : "center",  
+backgroundColor: Colors.primary,  
+height : "100%",  
+justifyContent : "center",
+
+},
+boundaries: {
+height : 650,
+
+borderColor: Colors.primary,  
+borderWidth: 12,  
+borderBottomLeftRadius: 30,  
+borderBottomRightRadius: 30,  
+backgroundColor: Colors.background,
+
+},
 });

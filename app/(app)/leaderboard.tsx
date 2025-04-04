@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "gold",
     marginLeft: "auto",
-    
+
   },
 });
 

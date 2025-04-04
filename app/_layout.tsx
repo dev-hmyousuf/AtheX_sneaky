@@ -6,7 +6,6 @@ import { Slot } from "expo-router";
 import { tokenCache } from "@/utils/cache";
 import { StatusBar } from "react-native";
 
-
 export default function RootLayout() {
   const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
