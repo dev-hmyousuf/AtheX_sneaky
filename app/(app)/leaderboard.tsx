@@ -44,6 +44,7 @@ const Leaderboard = () => {
   if (loading) return <ActivityIndicator size="large" color="blue" />;
 
   return (
+    <View style={styles.container}>
     <FlatList
       data={leaderboard}
       keyExtractor={(item) => item.id}
@@ -56,11 +57,22 @@ const Leaderboard = () => {
         </View>
       )}
     />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width : "90%",
+    alignSelf : "center",
+  },
   itemContainer: {
+    flex : 1,
+    width : "100%",
+    alignItems : "center",
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
