@@ -68,7 +68,7 @@ return null; // অথবা একটি লোডিং ইন্ডিকে�
 
 return (
 <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY }] }}>
-<Appbar.Header style={{ backgroundColor: 'black', justifyContent: 'space-between', width : "90%" }}>
+<Appbar.Header style={{ backgroundColor: 'black', justifyContent: 'space-between', width : "90%", alignSelf : "center" }}>
 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 {showBackButton && (
 <Appbar.Action icon="chevron-left" onPress={() => router.back()} color="white" />

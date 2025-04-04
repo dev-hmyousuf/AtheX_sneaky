@@ -1,25 +1,19 @@
-// app/(app)/profile 
-
-import React, { useState, useEffect } from "react";
-import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { View, Image, ActivityIndicator } from "react-native";
 import { Text } from "@/components/Text";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { Button } from "@/components/Button";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import Octicons from '@expo/vector-icons/Octicons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function Profile() {
   const { signOut } = useAuth();
-  const { user, isLoaded } = useUser();
+  const { user } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-  if (isLoaded) {
-    user.reload(); // Ensures the latest metadata is fetched
-  }
-}, [isLoaded]);
 
   const handleSignOut = async () => {
     setLoading(true);
@@ -34,17 +28,17 @@ export default function Profile() {
   };
 
   const providerIcons = {
-    GOOGLE: "logo-google",
-    GITHUB: "logo-github",
-    FACEBOOK: "logo-facebook",
-    TWITTER: "logo-twitter",
-    APPLE: "logo-apple",
-    DISCORD: "logo-discord",
+    GOOGLE: "google",
+    GITHUB: "github",
+    FACEBOOK: "facebook",
+    TWITTER: "twitter",
+    APPLE: "apple",
+    DISCORD: "discord",
   };
 
   const externalAccounts =
     user?.externalAccounts?.map((account) => ({
-      id: account.id, // Include account id
+      id: account.id, 
       provider: account.provider.replace("oauth_", "").toUpperCase(),
       name: `${account.firstName} ${account.lastName}`,
       username: account.username || "",
@@ -60,6 +54,14 @@ export default function Profile() {
     return user?.externalAccounts?.some(
       (account) => account.id === accountId && account.provider === primaryProvider
     );
+  };
+
+  const renderProviderIcon = (provider) => {
+    const iconName = providerIcons[provider] || "question-circle";
+    if (provider === "DISCORD") {
+      return <FontAwesome5 name={iconName} size={33} color="gray" />;
+    }
+    return <FontAwesome6 name={iconName} size={30} color="gray" />;
   };
 
   return (
@@ -80,7 +82,7 @@ export default function Profile() {
       </View>
 
       {externalAccounts.length > 0 && (
-        <View style={{ marginTop: 30, backgroundColor: "" }}>
+        <View style={{ marginTop: 30, alignSelf : "center", width : "95%" }}>
           <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10, color: "white" }}>
             Connected Accounts
           </Text>
@@ -97,21 +99,19 @@ export default function Profile() {
               }}
             >
               <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-                <Ionicons
-                  name={providerIcons[account.provider] || "help-circle"}
-                  size={30}
-                  color="gray"
-                />
+                {renderProviderIcon(account.provider)}
                 <View>
                   <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
                     <Text style={{ fontSize: 18, color: "#ffffee" }}>
                       {account.name}
                     </Text>
-                    <Octicons
-                      name="verified"
-                      size={18}
-                      color="white"
-                    />
+                    {isPrimary(account.id) && (
+                      <Octicons
+                        name="verified"
+                        size={18}
+                        color="white"
+                      />
+                    )}
                   </View>
                   {account.username && (
                     <Text style={{ fontSize: 14, color: "gray" }}>
@@ -138,13 +138,6 @@ export default function Profile() {
         </View>
       )}
 
-      <View style={{ padding: 20 }}>
-
-      <Text style={{ fontSize: 18, marginTop: 10, color: "#fff" }}>  
-            Total Points: {user?.unsafeMetadata?.gamePoints || 0}  
-          </Text>  
-      </View>
-
       <Button
         onPress={handleSignOut}
         style={{ marginTop: 20 }}
@@ -159,29 +152,3 @@ export default function Profile() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  pointsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#222",
-    padding: 15,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-    marginTop: 20,
-    justifyContent: "center",
-  },
-  emoji: {
-    fontSize: 30,
-    marginRight: 10,
-  },
-  pointsText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-});
