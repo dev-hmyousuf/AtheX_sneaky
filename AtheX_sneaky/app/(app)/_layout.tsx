@@ -119,6 +119,7 @@ return (
 
 export default function RootChatLayout() {
 return (
+<GestureHandlerRootView style={{ flex: 1 }}>
 <Stack
 screenOptions={{
 header: () => (
@@ -175,6 +176,6 @@ showRightPoints={true}
     }}  
   />  
 </Stack>
-
+</GestureHandlerRootView>
 );
 }

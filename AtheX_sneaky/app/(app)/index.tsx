@@ -18,14 +18,11 @@ export default function Index() {
     return <Redirect href="/(auth)" />;
   }
   return (
-    
    <>
-  	<GestureHandlerRootView style={{ flex: 1 }}>
     <Game />
-  </GestureHandlerRootView>
-     <Text style={{color : "#fff", alignSelf : "center" }}>
-       Secured By AtheX Risk
-     </Text>
+    <Text style={{color : "#fff", alignSelf : "center" }}>
+      Secured By AtheX Risk
+    </Text>
    </>
   );
 }
