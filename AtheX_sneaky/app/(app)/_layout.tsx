@@ -4,6 +4,7 @@ import { Stack, router } from 'expo-router';
 import { useUser } from '@clerk/clerk-expo';
 import { Appbar } from 'react-native-paper';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const AnimatedAppbar = ({ title = '', showProfile = true, showBackButton = false, showRightPoints = false }) => {
 const { user, isLoaded } = useUser();
