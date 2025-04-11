@@ -48,15 +48,15 @@
         "origin": false
       },
       "eas": {
-        "projectId": "dc159afe-17d2-4968-8b1e-0081f2e32f12"
+        "projectId": "ea7e8402-96f4-4c92-964d-f0193a3aa28d"
       }
     },
-    "owner": "athex_web3",
+    "owner": "hmyousuf2010",
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/dc159afe-17d2-4968-8b1e-0081f2e32f12"
+      "url": "https://u.expo.dev/ea7e8402-96f4-4c92-964d-f0193a3aa28d"
     }
   }
 }
